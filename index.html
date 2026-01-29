@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <title>fantaX</title>
+  <style>
+:root {
+  --bg-dark: linear-gradient(135deg, #ff8c1a 0%, #ff5e00 100%);
+  --text-dark: #ffffff;
+  --bg-light: #fff4e6;
+  --text-light: #222;
+  --fanta-light: rgba(255, 255, 255, 0.08);
+  --fanta-hover: rgba(255, 255, 255, 0.12);
+  --fanta-gradient: linear-gradient(90deg, #ffb347, #ff7a00);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  transition: all 0.4s ease;
+}
+
+body.light-mode {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .container {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, #ffffff, #ff9c33);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.client-group {
+  margin-bottom: 1rem;
+  border-radius: 16px;
+  position: relative;
+}
+
+.client-header {
+  padding: 1.25rem 1.5rem;
+  background: var(--fanta-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.1rem;
+}
+
+.client-header:hover {
+  background: var(--fanta-hover);
+}
+
+.featured-header {
+  background: rgba(255, 122, 0, 0.15);
+  border: 2px solid #ffb347;
+}
+
+.featured-header:hover {
+  background: rgba(255, 122, 0, 0.2);
+}
+
+.recommended-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: var(--fanta-gradient);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+}
+
+.client-versions {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.client-versions.active {
+  max-height: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+}
+
+.version-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.version-button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.version-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.version-tag.js {
+  background: var(--fanta-gradient);
+  color: white;
+  opacity: 1;
+  box-shadow: 0 2px 8px rgba(255, 122, 0, 0.2);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.active .arrow {
+  transform: rotate(180deg);
+}
+
+.featured-button {
+  background: rgba(255, 122, 0, 0.1);
+}
+
+.featured-button:hover {
+  background: rgba(255, 122, 0, 0.15);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--fanta-gradient);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 122, 0, 0.2);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 122, 0, 0.85);
+}
+
+body.light-mode .theme-toggle {
+  background: rgba(255, 180, 120, 0.2);
+  color: #222;
+}
+
+body.light-mode .theme-toggle:hover {
+  background: rgba(255, 180, 120, 0.35);
+}
+
+.hosted-button {
+  margin-top: 2rem;
+  background: var(--fanta-gradient);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: default;
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.hosted-button:hover {
+  transform: scale(1.05);
+}
+</style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+  <div class="container">
+    <h1>fantaX</h1>
+    
+    <div class="client-group">
+      <div class="client-header" onclick="toggleGroup('precision')">
+        <span>Precision Client</span>
+        <span class="arrow">↓</span>
+      </div>
+      <div class="client-versions" id="precision-versions">
+        <button onclick="selectClient('Version 1.5 JS')" class="version-button">
+          <span>Version 1.5 JS</span>
+          <div class="version-tag js">JS</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="client-group">
+      <div class="client-header" onclick="toggleGroup('eaglercraft')">
+        <span>Eaglercraft</span>
+        <span class="arrow">↓</span>
+      </div>
+      <div class="client-versions" id="eaglercraft-versions">
+        <button onclick="selectClient('1.8.8 JS')" class="version-button">
+          <span>1.8.8 JavaScript Version</span>
+          <div class="version-tag js">JS</div>
+        </button>
+        <button onclick="selectClient('1.12.2 JS')" class="version-button">
+          <span>1.12.2 JavaScript Version</span>
+          <div class="version-tag js">JS</div>
+        </button>
+        <button onclick="selectClient('1.5.2 JS')" class="version-button">
+          <span>1.5.2 JavaScript Version</span>
+          <div class="version-tag js">JS</div>
+        </button>
+      </div>
+    </div>
+
+    <div class="client-group">
+      <div class="client-header featured-header" onclick="toggleGroup('resent')">
+        <div class="recommended-badge">THE BEST</div>
+        <span>Resent Client</span>
+        <span class="arrow">↓</span>
+      </div>
+      <div class="client-versions" id="resent-versions">
+        <button onclick="selectClient('Resent Client 5.0')" class="version-button">
+          <span>Version 5.0</span>
+          <div class="version-tag js">JS</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hosted by Button -->
+  <button class="hosted-button">hosted by cokewater</button>
+
+  <script>
+    function toggleGroup(groupId) {
+      const versions = document.getElementById(`${groupId}-versions`);
+      const header = versions.previousElementSibling;
+      const arrow = header.querySelector('.arrow');
+
+      versions.classList.toggle('active');
+      header.classList.toggle('active');
+    }
+
+    function selectClient(client) {
+      const clientUrls = {
+        "1.8.8 JS": "/fantaX/clients/eagler-js/index.html",
+        "1.12.2 JS": "/fantaX/clients/112-javascript-u1/index.html",
+        "1.5.2 JS": "/fantaX/clients/152-js/index.html",
+        "Resent Client 5.0": "/fantaX/clients/resent50/index.html",
+        "Version 1.5 JS": "/fantaX/clients/precision-js/index.html",
+      };
+
+      const url = clientUrls[client];
+      if (url) {
+        window.location.href = url;
+      } else {
+        console.error("Client not found:", client);
+      }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light-mode");
+    }
+  </script>
+</body>
+</html>
