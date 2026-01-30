@@ -262,7 +262,7 @@ body.light-mode .info-button:hover {
 </head>
 <body>
   <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
-  <button class="info-button">USE RESENT 4.0 ALL OTHERS DON'T WORK</button>
+  <button class="info-button">resent 4 is the only one for multiplayer btw :D</button>
 
   <div class="container">
     <h1>fantaX</h1>
@@ -309,7 +309,11 @@ body.light-mode .info-button:hover {
       </div>
       <div class="client-versions" id="resent-versions">
         <button onclick="selectClient('Resent Client 5.0')" class="version-button">
-          <span>Version 5.0</span>
+          <span>Resent 5.0</span>
+          <div class="version-tag js">JS</div>
+        </button>
+         <button onclick="selectClient('Resent Client 4.0')" class="version-button">
+          <span>Resent 4.0</span>
           <div class="version-tag js">JS</div>
         </button>
       </div>
@@ -336,6 +340,7 @@ body.light-mode .info-button:hover {
         "1.5.2 JS": "/clients/152-js/index.html",
         "Resent Client 5.0": "/clients/resent50/index.html",
         "Version 1.5 JS": "/clients/precision-js/index.html",
+        "Resent Client 4.0": "/clients/resent40/index.html"
       };
 
       const url = clientUrls[client];
